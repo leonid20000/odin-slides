@@ -1,6 +1,6 @@
 # odin-slides
 
-![odin-slides Logo](docs/img/odin-logo-382023.png)
+![odin-slides Logo](docs/img/odin-logo-382023.png =150x)
 
 **odin-slides** is an advanced Python tool that empowers you to effortlessly draft impressive PowerPoint presentations. Leveraging the capabilities of Language Models (LLM), odin-slides enables content summarization, slide generation, and seamless presentation creation or updating based on user input and a chosen template. Whether you're preparing a business pitch, a conference presentation, or a classroom lecture, odin-slides simplifies the process and saves you valuable time.
 
