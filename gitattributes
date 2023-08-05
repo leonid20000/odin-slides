@@ -1,0 +1,5 @@
+# Ensure LF line endings for JavaScript files
+*.js text eol=lf
+
+# Treat all other files as binary with LF line endings
+* binary eol=lf
