@@ -109,17 +109,24 @@ Note: For input files larger than 5000 words, odin-slides automatically summariz
 
 ## Examples
 
-- Create a new presentation from a template:
+- Create a new presentation from scratch:
 
 ```bash
-odin-slides -t /path/to/template.pptx -o new_presentation
+odin-slides -t /path/to/template.pptx -o my_presentation
 ```
 
 - Resume a session and continue working on a presentation:
 
 ```bash
-odin-slides -t /path/to/template.pptx -o updated_presentation -s /path/to/session.pkl
+odin-slides -t /path/to/template.pptx -o my_presentation -s /path/to/my_presentation_session.pkl
 ```
+
+- Generate a presentation from an existing Word document:
+
+```bash
+odin-slides -t /path/to/template.pptx -o my_presentation -i /path/to/input.docx
+```
+
 
 ## Supported File Types
 
