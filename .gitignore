@@ -1,3 +1,6 @@
 *.bak
 */__pycache__/
 /__pycache__/
+/odin_slides.egg-info/
+/build/
+/dist/
