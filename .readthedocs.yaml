@@ -1,7 +1,7 @@
 # .readthedocs.yaml
 
 # Declare the version of the Read the Docs configuration schema
-version: 3
+version: 2
 
 # Define the build environment and settings
 sphinx:
