@@ -14,6 +14,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
+# Add paths to additional packages/modules
+sys.path.insert(0, os.path.abspath('../../odin_slides'))
+sys.path.insert(0, os.path.abspath('../../tests'))
 
 # -- Project information -----------------------------------------------------
 
