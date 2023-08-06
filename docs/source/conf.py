@@ -34,15 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',
 ]
 
-autodoc_default_options = {
-    'members': True,  # Include members (methods, attributes, etc.)
-    'undoc-members': True,  # Include members without docstrings
-    'private-members': True,  # Include private members
-    'show-inheritance': True,  # Show inheritance information
-    'special-members': '__init__',  # Include special members (e.g., __init__)
-    'imported-members': False,  # Include imported members
-    'exclude-members': '__dict__,__weakref__',  # Exclude specific members
-}
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
