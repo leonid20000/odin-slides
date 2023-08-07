@@ -154,7 +154,11 @@ def create_presentation(template_file, slide_content, output_file,logger):
             break
     print(format_info("Presentation created successfully and saved as: ")+ f"{output_file}")
     # Open the saved presentation file
-    os.startfile(output_file)
+    try:
+        os.startfile(output_file)
+    except Exception as e:
+            print(format_info("Open the saved file manually to see the changes."))
+            logger.debug(f"Can not preview the presentation using os default viewer: {e}")
 
 
 def build_slides_with_llm(template_file,word_content, output_file, session_file, logger):
