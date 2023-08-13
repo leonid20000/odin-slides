@@ -1,19 +1,25 @@
 # odin-slides
 
-<img src="docs/img/odin-logo-382023.png" alt="odin-slides Logo" width="15%">
+<img src="docs/img/odin-logo-382023.png" alt="odin-slides Logo" width="20%">
 
-**odin-slides** is an advanced Python tool that empowers you to effortlessly draft impressive PowerPoint presentations. Leveraging the capabilities of Language Models (LLM), odin-slides enables content summarization, slide generation, and seamless presentation creation or updating based on user input and a chosen template. Whether you're preparing a business pitch, a conference presentation, or a classroom lecture, odin-slides simplifies the process and saves you valuable time.
+**odin-slides** is an advanced Python tool that empowers you to effortlessly draft impressive PowerPoint presentations. Leveraging the capabilities of Large Language Models (LLM), odin-slides enables content summarization, slide generation, and seamless presentation creation or updating based on user input and a chosen template. Whether you're preparing a business pitch, a conference presentation, or a classroom lecture, odin-slides simplifies the process and saves you valuable time.
 
 [![Documentation Status](https://readthedocs.org/projects/odin-slides/badge/?version=latest)](https://odin-slides.readthedocs.io/en/latest/?badge=latest)
 [![CodeQL](https://github.com/leonid20000/odin-slides/actions/workflows/codeql.yml/badge.svg)](https://github.com/leonid20000/odin-slides/actions/workflows/codeql.yml)
+
+## Demo Video
+
+Experience the power of odin-slides in action with an engaging demo. Click the play button below to witness how this useful Python tool, driven by LLMs, effortlessly streamlines presentation creation and saves you valuable time:
+
+[![odin-slides Demo Video](https://img.youtube.com/vi/-rr7rar6td8/0.jpg)](https://www.youtube.com/watch?v=-rr7rar6td8)
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
+  - [Installing via Distribution Package](#installing-via-distribution-package)
   - [Installing from the Git Repository](#installing-from-the-git-repository)
   - [Development Installation](#development-installation)
-  - [Distribution Installation](#distribution-installation)
 - [Usage](#usage)
 - [Examples](#examples)
 - [Supported File Types](#supported-file-types)
@@ -37,6 +43,16 @@
 - **Extensibility:** odin-slides is designed to support additional Language Models and file types in future updates. Stay tuned for enhanced functionality and new features.
 
 ## Installation
+
+### Installing via Distribution Package
+
+To install odin-slides from a distribution package, utilize the provided pip command:
+
+```bash
+pip install odin-slides
+```
+
+This command will retrieve and install the odin-slides package from the Python Package Index (PyPI).
 
 ### Installing from the Git Repository
 
@@ -78,19 +94,6 @@ pip install -e .
 
 Now you can make changes to the odin-slides codebase, and the changes will be immediately reflected when you run the odin-slides command-line tool.
 
-### Distribution Installation
-
-To install odin-slides from a distribution package, follow these steps:
-
-1. Download the latest distribution package from the releases page.
-
-2. Install odin-slides using pip:
-
-```bash
-pip install /path/to/odin_slides-x.x.x.tar.gz
-```
-
-Replace `/path/to/odin_slides-x.x.x.tar.gz` with the path to the downloaded distribution package.
 
 ## Usage
 
