@@ -32,7 +32,7 @@ Experience the power of odin-slides in action with an engaging demo. Click the p
 
 - **Smart Presentation Creation:** Easily create new PowerPoint presentations or update existing ones with odin-slides' user-friendly command-line interface. Simply provide a template and let odin-slides handle the rest.
 
-- **Smart Content Summarization:** odin-slides supports Microsoft Word (docx) files for creating presentations. Even large Word documents are automatically summarized for concise and effective presentation creation. (Note: Other file types such as LaTeX and PDF will be supported in future updates.)
+- **Input-Driven Presentation Generation:** Leverage the power of odin-slides to effortlessly transform Microsoft Word (docx) files into captivating presentations. This intelligent tool expertly distills extensive Word documents, converting input into impactful and concise slides. (Keep an eye out for forthcoming updates that will enhance compatibility, adding support for file formats like LaTeX and PDF.)
 
 - **Customizable Language Models:** odin-slides supports different language models, with OpenAI GPT-3.5 Turbo as the initial model. You have the flexibility to choose the language model that best fits your presentation needs.
 
