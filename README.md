@@ -6,6 +6,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/odin-slides/badge/?version=latest)](https://odin-slides.readthedocs.io/en/latest/?badge=latest)
 [![CodeQL](https://github.com/leonid20000/odin-slides/actions/workflows/codeql.yml/badge.svg)](https://github.com/leonid20000/odin-slides/actions/workflows/codeql.yml)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/odin-slides)
 
 ## Demo Video
 
