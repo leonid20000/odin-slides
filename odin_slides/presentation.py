@@ -177,6 +177,7 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
         if not session_file:
             # Ask the user for prompt
             prompt = input(format_prompt("\nWhat slides shall I make for you? "))
+            print(format_info("OK, please wait. This might take a while...")+"\n")
             slide_deck=get_chat_response(word_content,[], prompt,logger)
             logger.debug(slide_deck)
             while True:
@@ -189,6 +190,7 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
                     logger.debug(e)
                     # Ask the user for prompt
                     prompt = input(format_prompt("Hmm, not sure what you want so I did not make any changes. Try differently: "))
+                    print(format_info("OK, please wait. This might take a while...")+"\n")
                     slide_deck=get_chat_response(word_content,[], prompt,logger)                    
                     
 
@@ -208,6 +210,7 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
         while True:
             create_presentation(template_file,slide_deck,output_file,logger)
             prompt = input(format_prompt(UIM.pop() if len(UIM) > 1 else UIM[-1]))
+            print(format_info("OK, please wait. This might take a while...")+"\n")
             if prompt == "-1":
                 print(format_info("Undoing changes and loading earlier version ...")+"\n")
                 slide_deck_history.pop() if len(slide_deck_history) > 1 else None
