@@ -98,7 +98,13 @@ Now you can make changes to the odin-slides codebase, and the changes will be im
 
 ## Usage
 
-To run odin-slides, execute the following command in your terminal:
+Before running `odin-slides`, you need to ensure that you have set your OpenAI API key as an environment variable named `ODIN_SLIDES_LLM_API_KEY`. This API key is required for the application to communicate with the OpenAI services. 
+
+`::: tip` Usage Limits and Key Rotation
+Make sure that you put usage limits on the keys that you create and regularly rotate your keys. This helps ensure the security of your API access and prevents misuse. For more info on this refer to the documentation of your LLM provider.
+`:::`
+
+Once you have set the API key, you can execute the following command in your terminal:
 
 ```bash
 odin-slides -t <template_file> -o <output_file> [-i <input_file_path>] [-s <session_file_path>]
