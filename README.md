@@ -156,3 +156,9 @@ Contributions to odin-slides are welcome! If you find any issues, have suggestio
 
 This project was created by Dr. Leonit Zeynalvand and offered under the MIT License.
 
+
+## Light Up the Night
+
+**odin-slides** is an open-source project, embracing the power of community. Consider giving it a star 🌟, if you think it deserves one. Your star helps acknowledge the collective effort behind this project and motivates further improvements.
+
+Thank you for being a part of our open source community! 🌟
