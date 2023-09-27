@@ -20,6 +20,10 @@ Module Functions:
     - build_slides_with_llm(template_file, word_content, output_file, session_file, logger):
         Build slides using a language model (LLM) based on user input.
 
+    - get_latest_slide_deck(pptx_file_path, current_slide_deck, logger):
+        Retrieves information from the latest PowerPoint slide deck in the specified file.
+
+
 Dependencies:
     - difflib
     - json
@@ -145,7 +149,7 @@ def create_presentation(template_file, slide_content, output_file,logger):
             prs.save(output_file)
             break
         except PermissionError:
-            print(f"Action Required: The file '{output_file}' is open in PowerPoint or another application. Please close it and press Enter to retry.")
+            print(format_warning("Action Required:")+ f" The file {output_file} is open in PowerPoint or another application." +format_prompt("Please close it and press Enter to retry. "))
             logger.error(f"Error: The file '{output_file}' is open in PowerPoint or another application. Please close it and press Enter to retry.")
             input()  # Wait for the user to close the file
         except Exception as e:
@@ -159,6 +163,62 @@ def create_presentation(template_file, slide_content, output_file,logger):
     except Exception as e:
             print(format_info("Open the saved file manually to see the changes."))
             logger.debug(f"Can not preview the presentation using os default viewer: {e}")
+
+
+def get_latest_slide_deck(pptx_file_path, current_slide_deck, logger):
+    """
+    Retrieves information from the latest PowerPoint slide deck in the specified file.
+
+    Args:
+        pptx_file_path (str): The path to the PowerPoint file.
+        current_slide_deck (list): The current list of slide information.
+        logger (Logger): The logger object for error reporting.
+
+    Returns:
+        list: A list of dictionaries containing slide information, including slide number,
+              title, content, and narration.
+
+    Note:
+        This function attempts to load the PowerPoint presentation and extract slide
+        information. If the file is open in another application with a read lock (rare), it will prompt the user
+        to close it and retry. If the file does not exist, it returns the current slide deck.
+
+    """
+    presentation = None
+    while True:
+        try:
+            presentation = Presentation(pptx_file_path)
+            break
+        except PermissionError:
+            print(format_warning("Action Required:")+ f" The file {output_file} is open in PowerPoint or another application." +format_prompt("Please close it and press Enter to retry. "))
+            logger.error(f"Error: The file '{output_file}' is open in PowerPoint or another application. Please close it and press Enter to retry.")
+            input()  # Wait for the user to close the file
+        except FileNotFoundError:
+            return current_slide_deck           
+        except Exception as e:
+            logger.error(f"An unexpected error occurred while loading the presentation: {e}")
+            return current_slide_deck            
+
+    updated_slide_deck = []
+
+    for slide_number, slide in enumerate(presentation.slides, start=1):
+        slide_info = {"slide_number": float(slide_number), "title": "", "content": "", "narration": ""}
+        
+        for shape in slide.shapes:
+            if shape.has_text_frame:
+                if shape == slide.shapes[0]:  # Assuming the first shape is the title
+                    slide_info["title"] = shape.text
+                else:
+                    slide_info["content"] += shape.text + "\n"
+        # Extract notes from the notes slide
+        notes_slide = slide.notes_slide
+        for shape in notes_slide.shapes:
+            if shape.has_text_frame:
+                slide_info["narration"] += shape.text + "\n"
+
+        updated_slide_deck.append(slide_info)
+
+    return updated_slide_deck
 
 
 def build_slides_with_llm(template_file,word_content, output_file, session_file, logger):
@@ -175,23 +235,30 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
     slide_deck_history=[[]]
     try:
         if not session_file:
-            # Ask the user for prompt
-            prompt = input(format_prompt("\nWhat slides shall I make for you? "))
-            print(format_info("OK, please wait. This might take a while...")+"\n")
-            slide_deck=get_chat_response(word_content,[], prompt,logger)
-            logger.debug(slide_deck)
-            while True:
-                try:
-                    slide_deck=ensure_list(json.loads(slide_deck))
-                    slide_deck_history=[slide_deck]
-                    break
-                except Exception as e:
-                    logger.debug("Not neccessarily an error but Invalid JSON string")
-                    logger.debug(e)
-                    # Ask the user for prompt
-                    prompt = input(format_prompt("Hmm, not sure what you want so I did not make any changes. Try differently: "))
-                    print(format_info("OK, please wait. This might take a while...")+"\n")
-                    slide_deck=get_chat_response(word_content,[], prompt,logger)                    
+            initial_slide_deck = get_latest_slide_deck(output_file, [], logger)
+            if initial_slide_deck != []:
+                print(format_warning("The output file is not empty but no session file is supplied. If you have the session file, consider continuing from the previously saved session.")+"\n")
+                print(format_info("Loading the existing text content of the file into a new session...")+"\n")
+                slide_deck = initial_slide_deck
+                slide_deck_history=[slide_deck]
+            else:
+                # Ask the user for prompt
+                prompt = input(format_prompt("\nWhat shall I do for you? "))
+                print(format_info("OK, please wait. This might take a while...")+"\n")
+                slide_deck=get_chat_response(word_content, initial_slide_deck, prompt,logger)
+                logger.debug(slide_deck)
+                while True:
+                    try:
+                        slide_deck=ensure_list(json.loads(slide_deck))
+                        slide_deck_history=[slide_deck]
+                        break
+                    except Exception as e:
+                        logger.debug("Not neccessarily an error but Invalid JSON string")
+                        logger.debug(e)
+                        # Ask the user for prompt
+                        prompt = input(format_prompt("Hmm, not sure what you want so I did not make any changes. Try differently: "))
+                        print(format_info("OK, please wait. This might take a while...")+"\n")
+                        slide_deck=get_chat_response(word_content,[], prompt,logger)                    
                     
 
 
@@ -204,7 +271,8 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
                 logger.debug(loaded_data)
             # Access slide_deck_history variable from the loaded data
             slide_deck_history = loaded_data['slide_deck_history']
-            slide_deck=slide_deck_history[-1]
+            slide_deck = get_latest_slide_deck(output_file, slide_deck_history[-1], logger)
+            slide_deck_history[-1] = slide_deck
             logger.debug(slide_deck)
 
         while True:
@@ -216,6 +284,7 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
                 slide_deck_history.pop() if len(slide_deck_history) > 1 else None
                 slide_deck = slide_deck_history[-1]
                 continue
+            slide_deck = get_latest_slide_deck(output_file, slide_deck, logger)
             result=get_chat_response(word_content,slide_deck, prompt,logger)
             try:
                 result=ensure_list(json.loads(result))
@@ -265,9 +334,12 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
         logger.error("Something went wrong while making presentation:")
         logger.error(e)
     finally:
-        print("\nSaving the session to "+output_file.replace(".", "_")+'_session.pkl')
+        file_name=output_file.replace(".", "_")+'_session.pkl'
+        if os.path.exists(file_name) and not session_file:
+            file_name = file_name.replace(".pkl", f"_new.pkl")
+        print("\nSaving the session to "+file_name)
         # Saving variables to a file
-        with open(output_file.replace(".", "_")+'_session.pkl', 'wb') as file:
+        with open(file_name, 'wb') as file:
             session_data = {
                 'slide_deck_history': slide_deck_history,
                 'word_content': word_content

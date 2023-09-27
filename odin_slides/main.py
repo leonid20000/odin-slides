@@ -87,6 +87,13 @@ def main():
         print(format_error("Something went wrong: ")+f"{e}"+"\n")
     except KeyboardInterrupt:
         print("\n"+format_info("Exiting..."))
+        print("Enjoying this project? Your support means a lot!")
+        print("If you find this open-source effort helpful, please consider giving it a star on GitHub.")
+        print("GitHub Repository: https://github.com/leonid20000/odin-slides")
+        print("Have ideas, found a bug, or need assistance?")
+        print("Feel free to create issues or submit pull requests on GitHub.")
+        print("\n"+format_info("Thank you for being part of the open-source community. See you next time!"))
+
     finally:
         # Remember to close the log handler when done
         for handler in logger.handlers:

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="odin-slides",
-    version="0.5",
+    version="0.6",
     packages=find_packages(),
     install_requires=[
         'python-pptx',
@@ -43,7 +43,14 @@ Odin-Slides is an advanced Python tool that empowers you to effortlessly craft i
 6. **Extensibility:**
    odin-slides is designed for extensibility, accommodating additional Language Models and file types in forthcoming updates. Anticipate enhanced functionality and new features as the tool evolves.
 
-Stay ahead in the world of presentations with odin-slides — your versatile and intelligent partner in creating impactful content.
+### Latest Updates
+
+#### Version 0.6 (September 27, 2023)
+
+- Added a new feature that allows odin-slides adopt manual modifications done by the user to the pptx text. This includes manually modified text in the title or the content of the slides. ([Issue #1](https://github.com/leonid20000/odin-slides/issues/1))
+
+
+Stay ahead in the world of presentations with odin-slides — your versatile and intelligent helper in creating impactful content.
 """,
     description="An advanced Python tool that empowers you to effortlessly draft impressive PowerPoint presentations from Word documents using generative AI.",
     url="https://github.com/leonid20000/odin-slides",
