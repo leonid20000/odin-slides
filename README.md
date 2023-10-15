@@ -14,7 +14,7 @@ This project is dedicated to the memory of Dennis Austin, the software developer
 
 Experience the power of odin-slides in action with an engaging demo. Click the play button below to witness how this useful Python tool, driven by LLMs, effortlessly streamlines presentation creation and saves you valuable time:
 
-[![odin-slides Demo Video](https://img.youtube.com/vi/-rr7rar6td8/0.jpg)](https://www.youtube.com/watch?v=-rr7rar6td8)
+[![odin-slides Demo Video](https://img.youtube.com/vi/s7ezOqQjMGA/0.jpg)](https://www.youtube.com/watch?v=s7ezOqQjMGA)
 
 ## Table of Contents
 
