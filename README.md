@@ -16,6 +16,13 @@ Experience the power of odin-slides in action with an engaging demo. Click the p
 
 [![odin-slides Demo Video](https://img.youtube.com/vi/s7ezOqQjMGA/0.jpg)](https://www.youtube.com/watch?v=s7ezOqQjMGA)
 
+## Latest Updates
+
+### Version 0.6 (September 27, 2023)
+
+- Added a new feature that allows odin-slides to adopt manual modifications done by the user to the pptx text. This includes manually modified text in the title or the content of the slides.
+
+
 ## Table of Contents
 
 - [Features](#features)
