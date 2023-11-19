@@ -45,6 +45,10 @@ Odin-Slides is an advanced Python tool that empowers you to effortlessly craft i
 
 ### Latest Updates
 
+#### Version 0.7 (November 19, 2023)
+
+- This update addresses a bug in prior versions that resulted in the creation of empty presentations due to certain inconsistencies. The update not only resolves this specific issue but also incorporates improved handling of undeterministic inconsistencies, ensuring a more reliable and stable user experience in alignment with the latest OpenAI updates. ([Issue #2](https://github.com/leonid20000/odin-slides/issues/2))
+
 #### Version 0.6 (September 27, 2023)
 
 - Added a new feature that allows odin-slides adopt manual modifications done by the user to the pptx text. This includes manually modified text in the title or the content of the slides. ([Issue #1](https://github.com/leonid20000/odin-slides/issues/1))
