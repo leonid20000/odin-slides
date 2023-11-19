@@ -28,7 +28,7 @@ import os
 import json
 import requests
 
-from .utils import format_error
+from .utils import format_error, extract_json_from_string 
 
 def get_LLM_summarization(word_content,logger):
     """Get a summarization of the provided word content using a language model.
@@ -122,7 +122,7 @@ def get_chat_response(word_content, slideDeck, prompt,logger):
             {"role": "system", "content": "For each slide the content field is the main body of the slide while the narration field is just an example transcript of the presentation of the content field. \n Never mention the slide number in the transcript."},
             {"role": "system", "content": "For each slide, the content field should be the default field to modify if modification is demanded by the user for the slide, not the narration field. "},
             {"role": "system", "content": "For each slide, the narration field should only be populated if explicitely asked in user prompt, otherwise should be left empty. "},
-            {"role": "system", "content": "Response should be valid json. slide_number, title,and content are mandatory keys."},
+            {"role": "system", "content": "Response should be valid json in the format described earlier. slide_number, title,and content are mandatory keys."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.9,
@@ -148,6 +148,7 @@ def get_chat_response(word_content, slideDeck, prompt,logger):
         logger.debug(response_data['usage'])
         response_message = response_data['choices'][0]['message']['content']
         logger.debug(response_message)
+        response_message = extract_json_from_string(response_message)
         return response_message
 
     except requests.exceptions.Timeout:

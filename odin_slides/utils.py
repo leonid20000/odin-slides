@@ -35,7 +35,7 @@ Dependencies:
     - colorama
 
 """
-
+import re
 import logging
 from docx import Document
 from colorama import Fore, Style
@@ -200,3 +200,26 @@ def ensure_list(result):
         return result
     else:
         raise TypeError("Result must be a dictionary or a list.")
+
+def extract_json_from_string(input_string):
+    # Define a pattern for finding JSON content
+    json_pattern = re.compile(r'\[.*\]', re.DOTALL)
+    # Search for the pattern in the input string
+    match = json_pattern.search(input_string)
+
+    # Check if a match is found
+    if match:
+        # Extract and return the matched JSON content
+        json_content = match.group(0)
+        return json_content
+    else:
+        # Define a pattern for finding JSON content
+        json_pattern = re.compile(r'\{.*\}', re.DOTALL)
+        # Search for the pattern in the input string
+        match = json_pattern.search(input_string)
+        if match:
+            # Extract and return the matched JSON content
+            json_content = match.group(0)
+            return json_content
+        else:
+            return None

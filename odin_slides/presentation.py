@@ -232,11 +232,11 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
         logger (logging.Logger): The logger object to record any errors.
     """
     UIM=["\nHave a look at what we have got so far. \nKey in -1 to undo, or let me know if you want me to make further changes: "]
-    slide_deck_history=[[]]
+    slide_deck_history=[[{"slide_number": 1, "title": "", "content": ""}]]
     try:
         if not session_file:
-            initial_slide_deck = get_latest_slide_deck(output_file, [], logger)
-            if initial_slide_deck != []:
+            initial_slide_deck = get_latest_slide_deck(output_file, slide_deck_history[0], logger)
+            if initial_slide_deck != slide_deck_history[0]:
                 print(format_warning("The output file is not empty but no session file is supplied. If you have the session file, consider continuing from the previously saved session.")+"\n")
                 print(format_info("Loading the existing text content of the file into a new session...")+"\n")
                 slide_deck = initial_slide_deck
@@ -333,6 +333,7 @@ def build_slides_with_llm(template_file,word_content, output_file, session_file,
     except Exception as e:
         logger.error("Something went wrong while making presentation:")
         logger.error(e)
+        print(format_error("Something went wrong while making presentation: ")+f"{e}"+"\n")
     finally:
         file_name=output_file.replace(".", "_")+'_session.pkl'
         if os.path.exists(file_name) and not session_file:
