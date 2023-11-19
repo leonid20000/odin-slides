@@ -18,6 +18,10 @@ Experience the power of odin-slides in action with an engaging demo. Click the p
 
 ## Latest Updates
 
+### Version 0.7 (November 19, 2023)
+
+- This update fixes a bug present in previous versions (versions before 0.7) where certain OpenAI prompt-response inconsistencies resulted in the creation of empty presentations. Additionally, the update enhances the handling of potential future inconsistencies, ensuring a more reliable and stable user experience.
+
 ### Version 0.6 (September 27, 2023)
 
 - Added a new feature that allows odin-slides to adopt manual modifications done by the user to the pptx text. This includes manually modified text in the title or the content of the slides.
