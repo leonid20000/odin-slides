@@ -50,7 +50,7 @@ def get_LLM_summarization(word_content,logger):
     if len(word_content.split()) < 1000:
         model = "gpt-3.5-turbo"
     else:
-        model = "gpt-3.5-turbo-16k"
+        model = "gpt-3.5-turbo"
 
     data = {
         "model": model,
@@ -116,7 +116,7 @@ def get_chat_response(word_content, slideDeck, prompt,logger):
         raise ValueError("API key not found. Please make sure the 'ODIN_SLIDES_LLM_API_KEY' environment variable is set.")
 
     data = {
-        "model": "gpt-3.5-turbo-16k",
+        "model": "gpt-3.5-turbo",
         "messages": [
             {"role": "system", "content": "User will ask you to create or update text content for some slides"+(" based on the aforementioned Input Article" if word_content else "")+". The response format should be a valid json format structured as this: [{\"slide_number\": <Float>, \"title\": \"<String>\", \"content\": \"<String>\", \"narration\": \"<String>\"},{\"slide_number\": <Float>, \"title\": \"<String>\", \"content\": \"<String>\", \"narration\": \"<String>\"}] \n content field in the response comprehensive enough as it is the main text of each slide. \n For content use a mix of bullet points and text when applicable. \n If you are modifying an existing slide leave the slide number unchanged but if you are adding slides to the existing slides, use decimal digits for the slide number. for example to add a slide after slide 2, use slide number 2.1, 2.2, ... \n If user asks to remove a slide, set its slide number to negative of its current value because slides with negative slide number will be excluded from presentation. \n The existing slides are as follows: "+json.dumps(slideDeck)},
             {"role": "system", "content": "For each slide the content field is the main body of the slide while the narration field is just an example transcript of the presentation of the content field. \n Never mention the slide number in the transcript."},
