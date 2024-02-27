@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="odin-slides",
-    version="0.8",
+    version="0.9",
     packages=find_packages(),
     install_requires=[
         'python-pptx',
@@ -45,7 +45,7 @@ Odin-Slides is an advanced Python tool that empowers you to effortlessly craft i
 
 ### Latest Updates
 
-#### Version 0.8 (February 27, 2024)
+#### Version 0.9 (February 27, 2024)
 
 - Deprecated `gpt-3.5-turbo-16k` in favor of defaulting to `gpt-3.5-turbo` with a 16k context window.
 
