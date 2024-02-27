@@ -195,9 +195,9 @@ def ensure_list(result):
         TypeError: If the result is neither a dictionary nor a list.
     """
     if isinstance(result, dict):
-        return [result]
+        return process_dict_list([result])
     elif isinstance(result, list):
-        return result
+        return process_dict_list(result)
     else:
         raise TypeError("Result must be a dictionary or a list.")
 
@@ -223,3 +223,27 @@ def extract_json_from_string(input_string):
             return json_content
         else:
             return None
+
+def process_content(input_data):
+    if isinstance(input_data, str):
+        return input_data
+    elif isinstance(input_data, dict):
+        return '\n'.join([f"{key}: {value}" for key, value in input_data.items()])
+    elif isinstance(input_data, list):
+        output = []
+        for item in input_data:
+            if isinstance(item, str):
+                output.append(item)
+            elif isinstance(item, dict):
+                output.extend([f"{key}: {value}" for key, value in item.items()])
+            else:
+                return "{fill the placeholder}"
+        return '\n'.join(output)
+    else:
+        return "{fill the placeholder}"
+
+def process_dict_list(dict_list):
+    for dictionary in dict_list:
+        if "content" in dictionary:
+            dictionary["content"] = process_content(dictionary["content"])
+    return dict_list

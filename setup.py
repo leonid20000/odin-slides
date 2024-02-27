@@ -45,6 +45,10 @@ Odin-Slides is an advanced Python tool that empowers you to effortlessly craft i
 
 ### Latest Updates
 
+#### Version 0.8 (February 27, 2024)
+
+- Deprecated `gpt-3.5-turbo-16k` in favor of defaulting to `gpt-3.5-turbo` with a 16k context window.
+
 #### Version 0.7 (November 19, 2023)
 
 - This update addresses a bug in prior versions that resulted in the creation of empty presentations due to certain inconsistencies. The update not only resolves this specific issue but also incorporates improved handling of undeterministic inconsistencies, ensuring a more reliable and stable user experience in alignment with the latest OpenAI updates. ([Issue #2](https://github.com/leonid20000/odin-slides/issues/2))
