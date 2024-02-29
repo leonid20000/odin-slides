@@ -16,7 +16,17 @@ Experience the power of odin-slides in action with an engaging demo. Click the p
 
 [![odin-slides Demo Video](https://img.youtube.com/vi/s7ezOqQjMGA/0.jpg)](https://www.youtube.com/watch?v=s7ezOqQjMGA)
 
+## Wiki Page
+
+Visit the [wiki page](https://github.com/leonid20000/odin-slides/wiki) to see short gifs demonstrating the latest features and updates of odin-slides, including automated summarization of large Word documents, effortless presentation creation, and customization with custom placeholders.
+
 ## Latest Updates
+
+### Version 0.9 (February 27, 2024)
+
+- Deprecated the usage of `gpt-3.5-turbo-16k` in favor of defaulting to `gpt-3.5-turbo` with a 16k context window. This change enhances the overall performance and efficiency of the tool.
+
+- Strengthened the support for placeholder-based inline PowerPoint file revisions, providing users with enhanced flexibility over their presentation revision. Check out our [Quick GIF Demo on Placeholder Usage](https://github.com/leonid20000/odin-slides/wiki/GPT-Fill%E2%80%90in%E2%80%90the%E2%80%90Blanks:-A-Placeholder-PowerPlay-for-Your-Slides) for more details.
 
 ### Version 0.7 (November 19, 2023)
 
